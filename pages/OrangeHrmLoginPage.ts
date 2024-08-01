@@ -1,6 +1,6 @@
 import { Locator, Page, expect } from "@playwright/test";
 
-export class OrangeLoginPage {
+export class OrangeHrmLoginPage {
 
     readonly page: Page;
     readonly usernameInput: Locator;

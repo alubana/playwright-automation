@@ -1,17 +1,16 @@
 import { Locator, Page, expect } from "@playwright/test";
+import { OrangeBasePage } from "./OrangeHrmBasePage";
 
-export class OrangeHrmDashboardPage {
 
-    readonly page: Page;
+export class OrangeHrmDashboardPage extends OrangeBasePage{
+
     readonly profileUsername: Locator;
     readonly headerLabel: Locator;
 
-
-
     constructor(page: Page) {
-        this.page = page;
+        super(page);
         this.profileUsername = page.locator('p.oxd-userdropdown-tab');
-        this.headerLabel = this.page.getByRole('heading', { name: 'Dashboard' });
+        this.headerLabel = page.getByRole('heading', { name: 'Dashboard' });
 
     }
 

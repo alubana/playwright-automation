@@ -1,0 +1,32 @@
+import {Locator, Page, expect} from "@playwright/test";
+import { OrangeBasePage } from "./OrangeHrmBasePage";
+
+export class OrangeHrmAdminUserPage extends OrangeBasePage {
+    readonly topbarUserManagementTab: Locator;
+    readonly userMenuItem: Locator;
+    readonly addBtn: Locator;
+    readonly headerSystemUsersLabel : Locator;
+    readonly searchBtn: Locator;
+    readonly recordsFoundLabel: Locator;
+
+
+
+
+    constructor(page: Page) {
+        super(page);
+        this.topbarUserManagementTab = page.locator('li').filter({ hasText: 'User Management' }).locator('i');
+        this.userMenuItem = page.getByRole('menuitem', { name: 'Users' });
+        this.addBtn = page.getByRole('button', { name: ' Add' });
+        this.headerSystemUsersLabel = page.locator("//h5[normalize-space()='System Users']");
+        this.searchBtn = page.getByRole('button', { name: 'Search' });
+        this.recordsFoundLabel = page.locator("//span[@class='oxd-text oxd-text--span']");
+    }
+    async verifySystemUserLabelIsDisplayed() {
+        await expect(this.headerSystemUsersLabel).toBeVisible();
+
+    }
+    async verifyrecordsFoundLabelIsDisplayed() {
+        await expect(this.recordsFoundLabel).toBeVisible();
+
+    }
+}
